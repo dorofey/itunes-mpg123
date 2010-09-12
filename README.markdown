@@ -6,6 +6,6 @@ Usage: play.py artist/album
 
 Example:
 
-*	**play.py voi**    will play all **Voivid** albums
+*	**play.py voi**    will play all **Voivod** albums
 
-*	**play.py voi/no** will play just **Voivid - Nothingface** album
+*	**play.py voi/no** will play just **Voivod - Nothingface** album
