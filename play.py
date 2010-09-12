@@ -13,6 +13,7 @@ else: band, album = arg, None
 
 bands = [elm for elm in os.listdir(MUSIC_DIR) if not elm.startswith('.')] #get rid of .DS_Store
 
+tracks = []
 for bnd in bands:
     if bnd.lower().startswith(band.lower()):
         band_dir=os.path.join(MUSIC_DIR, bnd)
@@ -20,10 +21,12 @@ for bnd in bands:
         for alb in band_alb:
             if not album or alb.lower().startswith(album.lower()):
                 alb_dir=os.path.join(band_dir, alb, '*.mp3')
-                tracks = "\n".join(glob.glob(alb_dir))
-                if len(tracks) > 0:
-                    pls = open(PLS, 'w')
-                    pls.write(tracks)
-                    pls.close()
-                    os.system('mpg123 -C -@ ' + PLS)
+                tracks.extend(glob.glob(alb_dir))
+
+_pls = "\n".join(tracks)
+if len(_pls) > 0:
+    pls = open(PLS, 'w')
+    pls.write(_pls)
+    pls.close()
+    os.system('mpg123 -C -@ ' + PLS)
                 
